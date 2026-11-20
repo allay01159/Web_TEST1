@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>검은 광대 · THE BLACK CLOWN 3D</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand">
+        <span>NOIR CIRCUS</span>
+        <small class="badge">3D EDITION</small>
+      </div>
+      <div class="header-actions">
+        <button class="dark" id="sound" type="button">소리 켜짐 ♪</button>
+      </div>
+    </header>
+
+    <section class="stage" id="stage">
+      <!-- Title Poster Canvas -->
+      <canvas id="poster"></canvas>
+
+      <!-- Cover Overlay -->
+      <div class="cover" id="cover">
+        <div class="eyebrow">MIDNIGHT MATINÉE &nbsp; / &nbsp; 심야 특별 상영</div>
+        <h1>검은 광대</h1>
+        <div class="english">The Black Clown</div>
+        <p>
+          막은 내렸고, 극장에 남은 관객은 당신뿐이다.<br>
+          네 개의 열쇠를 모으고 어둠 속 <b>은신처</b>에 몸을 숨겨<br>
+          <b>3D 비상 출구</b>의 잠금을 해제하라.
+        </p>
+        <div class="actions">
+          <button class="btn primary" id="start" type="button">입장하기 &nbsp;→</button>
+          <button class="btn alt" id="guide" type="button">공연 안내</button>
+        </div>
+      </div>
+
+      <!-- True 3D WebGL Viewport -->
+      <canvas id="view" width="960" height="540" hidden></canvas>
+
+      <!-- Atmospheric Post Vignette & Danger Distortion Overlay -->
+      <div class="vignette" id="vignette" hidden></div>
+      <div class="hide-overlay" id="hideOverlay" hidden>
+        <span class="hide-badge">숨는 중 · BREATH HELD</span>
+      </div>
+
+      <!-- In-Game HUD -->
+      <div class="hud" id="hud" hidden>
+        <div class="hud-left">
+          <div class="plate" id="status">열쇠 0/4 &nbsp;·&nbsp; 0:00</div>
+          <div class="key-pips" id="keyPips" aria-label="수집한 열쇠">
+            <span class="pip" data-idx="0">Ⅰ</span>
+            <span class="pip" data-idx="1">Ⅱ</span>
+            <span class="pip" data-idx="2">Ⅲ</span>
+            <span class="pip" data-idx="3">Ⅳ</span>
+          </div>
+        </div>
+        <div class="hud-right">
+          <button class="dark" id="journal" type="button">수첩 [M]</button>
+          <button class="dark" id="pause" type="button">Ⅱ</button>
+        </div>
+      </div>
+
+      <!-- Contextual Prompt Hint -->
+      <div id="hint" hidden></div>
+
+      <!-- Stamina & Stealth Meter -->
+      <div class="meters" id="meters" hidden>
+        <div class="meter-row">
+          <span class="meter-label">호흡</span>
+          <div class="meter-track"><div class="meter-fill" id="energyBar"></div></div>
+        </div>
+        <div class="meter-row">
+          <span class="meter-label">태엽</span>
+          <div class="meter-track"><div class="meter-fill toy" id="toyBar"></div></div>
+        </div>
+      </div>
+
+      <!-- Program Modal (Guide / Journal / Keypad / Ending) -->
+      <div id="modal" hidden>
+        <div class="card" role="dialog" aria-modal="true" aria-labelledby="mt">
+          <div class="cap">NOIR CIRCUS · PROGRAMME</div>
+          <h2 id="mt"></h2>
+          <div id="body"></div>
+          <div class="actions" id="buttons"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Touch Controls for Mobile / Tablet -->
+    <div id="touch">
+      <div class="touch-group">
+        <button class="dark" data-key="ArrowLeft" type="button">↶</button>
+        <button class="dark" data-key="KeyW" type="button">전진</button>
+        <button class="dark" data-key="KeyS" type="button">후진</button>
+        <button class="dark" data-key="ArrowRight" type="button">↷</button>
+      </div>
+      <div class="touch-group">
+        <button class="dark" id="sprintTouch" data-key="ShiftLeft" type="button">질주</button>
+        <button class="dark accent" id="use" type="button">조사/숨기</button>
+        <button class="dark" id="wind" type="button">태엽</button>
+      </div>
+    </div>
+
+    <footer>
+      <span>✦ &nbsp;흑백극장 3D 상영작</span>
+      <span id="foot">1인칭 잠입 공포 탈출 &nbsp;/&nbsp; WASD · E 조사/숨기 · Q 태엽 · M 수첩</span>
+    </footer>
+  </main>
+
+  <script defer src="js/constants.js"></script>
+  <script defer src="js/audio.js"></script>
+  <script defer src="js/engine3d.js"></script>
+  <script defer src="js/world.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>
